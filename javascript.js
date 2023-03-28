@@ -66,14 +66,12 @@ const outcome = document.createElement("div");
 container.appendChild(outcome);
 
 function playRound(playerChoice, computerChoice) {
-  playerScore.textContent = `Player: ${playerWins}`;
-  computerScore.textContent = `Computer: ${computerWins}`;
   if (playerChoice === computerChoice) {
     outcome.textContent = "It's a tie!";
-  } else if (playerChoice === "rock" && computerChoice === "paper") {
+  } else if (playerChoice === "paper" && computerChoice === "rock") {
     outcome.textContent = "Player wins!";
     playerWins++;
-  } else if (playerChoice === "paper" && computerChoice === "rock") {
+  } else if (playerChoice === "rock" && computerChoice === "scissors") {
     outcome.textContent = "Player wins!";
     playerWins++;
   } else if (playerChoice === "scissors" && computerChoice === "paper") {
@@ -83,7 +81,14 @@ function playRound(playerChoice, computerChoice) {
     outcome.textContent = "Computer wins! You lose.";
     computerWins++;
   }
+  playerScore.textContent = `Player: ${playerWins}`;
+  computerScore.textContent = `Computer: ${computerWins}`;
   selection(playerChoice, computerChoice);
+  if (playerWins === 5) {
+    outcome.textContent = "Player wins the best of 5!";
+  } else if (computerWins === 5) {
+    outcome.textContent = "Computer wins the best of 5! You lose.";
+  }
 }
 
 // // Create game function, best of 5
