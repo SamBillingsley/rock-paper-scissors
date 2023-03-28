@@ -1,3 +1,5 @@
+const container = document.querySelector("#container");
+
 // Make array for each choice
 const choices = ["rock", "paper", "scissors"];
 
@@ -29,10 +31,20 @@ function computerChoice() {
 let playerWins = 0;
 let computerWins = 0;
 
+const playerSelection = document.createElement("p");
+const computerSelection = document.createElement("p");
+container.appendChild(playerSelection);
+container.appendChild(computerSelection);
+
+function selection(playerChoice, computerChoice) {
+  playerSelection.textContent = "Players choice:" + " " + playerChoice;
+  computerSelection.textContent = "Computers choice:" + " " + computerChoice;
+}
+
 // Create event listeners for buttons to select playerChoice
-const rockBtn = document.getElementById("rock");
-const paperBtn = document.getElementById("paper");
-const scissorsBtn = document.getElementById("scissors");
+const rockBtn = document.querySelector("#rockBtn");
+const paperBtn = document.querySelector("#paperBtn");
+const scissorsBtn = document.querySelector("#scissorsBtn");
 
 rockBtn.addEventListener("click", () => playRound("rock", computerChoice()));
 paperBtn.addEventListener("click", () => playRound("paper", computerChoice()));
@@ -40,32 +52,39 @@ scissorsBtn.addEventListener("click", () =>
   playRound("scissors", computerChoice())
 );
 
+// Create a function that displays the score
+const scoreboard = document.createElement("div");
+container.appendChild(scoreboard);
+
+const playerScore = document.createElement("p");
+const computerScore = document.createElement("p");
+scoreboard.appendChild(playerScore);
+scoreboard.appendChild(computerScore);
+
 // Create a function to decide the winner
+const outcome = document.createElement("div");
+container.appendChild(outcome);
+
 function playRound(playerChoice, computerChoice) {
-  console.log("Players choice:" + " " + playerChoice);
-  console.log("Computers choice:" + " " + computerChoice);
+  playerScore.textContent = `Player: ${playerWins}`;
+  computerScore.textContent = `Computer: ${computerWins}`;
   if (playerChoice === computerChoice) {
-    console.log("It's a tie!");
+    outcome.textContent = "It's a tie!";
   } else if (playerChoice === "rock" && computerChoice === "paper") {
-    console.log("Player wins!");
+    outcome.textContent = "Player wins!";
     playerWins++;
   } else if (playerChoice === "paper" && computerChoice === "rock") {
-    console.log("Player wins!");
+    outcome.textContent = "Player wins!";
     playerWins++;
   } else if (playerChoice === "scissors" && computerChoice === "paper") {
-    console.log("Player wins!");
+    outcome.textContent = "Player wins!";
     playerWins++;
   } else {
-    console.log("Computer wins! You lose.");
+    outcome.textContent = "Computer wins! You lose.";
     computerWins++;
   }
+  selection(playerChoice, computerChoice);
 }
-
-// // Create a function that displays the score
-// function score(playerWins, computerWins) {
-//   console.log(`Player: ${playerWins}`);
-//   console.log(`Computer: ${computerWins}`);
-// }
 
 // // Create game function, best of 5
 // function game(playerChoice, computerChoice) {
