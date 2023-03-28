@@ -9,24 +9,6 @@ function computerChoice() {
   return choices[randNum];
 }
 
-// Ask the user to choose one of the three choices
-// function getPlayerChoice() {
-//   let userInput = prompt("Rock, Paper, or Scissors?");
-//   const input = userInput.toLowerCase;
-//   if (userInput.toLowerCase() === "rock") {
-//     return choices[0];
-//   } else if (userInput.toLowerCase() === "paper") {
-//     return choices[1];
-//   } else if (userInput.toLowerCase() === "scissors") {
-//     return choices[2];
-//   } else {
-//     alert("Not a valid response, try again.");
-//     getPlayerChoice();
-//   }
-// }
-
-// let playerChoice = getPlayerChoice();
-
 // Create playerWins and computerWins variable to keep track of wins
 let playerWins = 0;
 let computerWins = 0;
@@ -61,6 +43,25 @@ const computerScore = document.createElement("p");
 scoreboard.appendChild(playerScore);
 scoreboard.appendChild(computerScore);
 
+// Make reset button work
+document.getElementById("resetBtn").style.visibility = "hidden";
+
+function resetBtnVisible() {
+  document.getElementById("resetBtn").style.visibility = "visible";
+}
+
+function reset() {
+  playerWins = 0;
+  computerWins = 0;
+  playerScore.textContent = `Player: ${playerWins}`;
+  computerScore.textContent = `Computer: ${computerWins}`;
+  outcome.textContent = "";
+  document.getElementById("resetBtn").style.visibility = "hidden";
+}
+
+const resetBtn = document.querySelector("#resetBtn");
+resetBtn.addEventListener("click", () => reset());
+
 // Create a function to decide the winner
 const outcome = document.createElement("div");
 container.appendChild(outcome);
@@ -85,31 +86,10 @@ function playRound(playerChoice, computerChoice) {
   computerScore.textContent = `Computer: ${computerWins}`;
   selection(playerChoice, computerChoice);
   if (playerWins === 5) {
-    playerWins = 0;
-    computerWins = 0;
+    resetBtnVisible();
     outcome.textContent = "Player wins the best of 5!";
   } else if (computerWins === 5) {
-    playerWins = 0;
-    computerWins = 0;
+    resetBtnVisible();
     outcome.textContent = "Computer wins the best of 5! You lose.";
   }
 }
-
-// // Create game function, best of 5
-// function game(playerChoice, computerChoice) {
-//   playRound(playerChoice, computerChoice);
-//   score(playerWins, computerWins);
-//   while (playerWins < 3 && computerWins < 3) {
-//     playerChoice = getPlayerChoice();
-//     computerChoice = getComputerChoice();
-//     playRound(playerChoice, computerChoice);
-//     score(playerWins, computerWins);
-//   }
-//   if (playerWins === 3) {
-//     console.log("Player has won the best of 5!");
-//   } else {
-//     console.log("Computer has won the best of 5! You lose.");
-//   }
-// }
-
-// playRound(playerChoice, computerChoice);
