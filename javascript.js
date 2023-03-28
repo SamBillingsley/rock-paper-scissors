@@ -85,8 +85,12 @@ function playRound(playerChoice, computerChoice) {
   computerScore.textContent = `Computer: ${computerWins}`;
   selection(playerChoice, computerChoice);
   if (playerWins === 5) {
+    playerWins = 0;
+    computerWins = 0;
     outcome.textContent = "Player wins the best of 5!";
   } else if (computerWins === 5) {
+    playerWins = 0;
+    computerWins = 0;
     outcome.textContent = "Computer wins the best of 5! You lose.";
   }
 }
