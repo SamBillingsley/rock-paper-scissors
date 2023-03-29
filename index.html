@@ -5,13 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
     <script src="javascript.js" defer></script>
   </head>
   <body>
-    <button id="rockBtn">ROCK</button>
-    <button id="paperBtn">PAPER</button>
-    <button id="scissorsBtn">SCISSORS</button>
-    <button id="resetBtn">RESET</button>
-    <div id="container"></div>
+    <div class="buttons">
+      <button id="rockBtn">🪨</button>
+      <button id="paperBtn">📄</button>
+      <button id="scissorsBtn">✂️</button>
+    </div>
+    <div id="scoreboard">
+      <div id="player">
+        <p>🧍‍♂️</p>
+      </div>
+      <div id="container">
+        <div id="choice"></div>
+        <button id="resetBtn">RESET</button>
+      </div>
+      <div id="computer">
+        <p>🖥️</p>
+      </div>
+    </div>
   </body>
 </html>
